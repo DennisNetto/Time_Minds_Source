@@ -1,0 +1,55 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+Mod Client
+{% endblock %}
+
+{% block content %}
+    {% if usertype == 'Bookeeper' %}
+        {% include 'info/includes/book_navbar.html' %}
+    {% else %}
+        {% include 'info/includes/corr_navbar.html' %}
+    {% endif %}
+    <div class="conb">
+    <div class="row justify-content-sm-center">
+    <form class='form-con' method="post">
+				<h1>Modify a Client</h1>
+                    {% csrf_token %}
+                    {% for i in clientinfo %}
+					<input class='form-fan' type='hidden' name='id' value='$id'>
+					First Name:
+						{{ form.client_fname.errors }}{{ form.client_fname }}
+					Last Name:
+						{{ form.client_lname.errors }}{{ form.client_lname }}<br /><br />
+
+					Full Address:
+						{{ form.client_address.errors }}{{ form.client_address }}
+					City:
+						{{ form.client_city.errors }}{{ form.client_city }}<br /><br />
+
+						Primary Phone Number:
+						<input {{ phone }}><br />
+						<p class='text-danger'>Format: 000-000-0000</p>
+
+					<!--display selection of statuses-->
+					Status:
+						{{ form.client_status.errors }}{{ form.client_status }}<br /><br />
+
+					<!--display selection of group homes-->
+					<br>Distance (in kilometers):<div class='form-row'><div class='col-12'>
+						{{ form.client_km.errors }}{{ form.client_km }}<br /><br />
+
+					</div></div>Max Hours per Month:<div class='form-row'><div class='col-12'>
+						{{ form.client_max_hours.errors }}{{ form.client_max_hours }}<br /><br />
+
+					</div></div>Notes:<br />
+						{{ form.client_notes.errors }}{{ form.client_notes }}<br /><br />
+                    {% endfor %}
+					<button class='btn btn-primary' type="submit">Submit</button>
+					<a href='/viewclient' class='btn btn-danger'>Cancel</a>
+
+    </form></div></div><br />
+
+				<!--cancel button that returns user to previous page-->
+{% include 'info/includes/footer.html' %}
+{% endblock %}>

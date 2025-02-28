@@ -1,0 +1,33 @@
+.footer {
+	/*position: fixed; was the original setting*/
+	
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+
+}
+
+
+.footer2 {
+	/*position: fixed; was the original setting*/
+	position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+	z-index: -1;
+
+}
+
+.body
+{
+	height: 80%;
+	
+}
+
+
+
+

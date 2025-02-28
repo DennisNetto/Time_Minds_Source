@@ -1,0 +1,162 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+Mod Shift
+{% endblock %}
+
+{% block content %}
+    {% if usertype == 'Bookeeper' %}
+        {% include 'info/includes/book_navbar.html' %}
+    {% else %}
+        {% include 'info/includes/corr_navbar.html' %}
+    {% endif %}
+                {% load static %}
+       <link rel="stylesheet" href="{% static 'jquery-ui.css' %}" />
+
+      <script src="{% static 'js/jquery-3.6.0.js' %}" ></script>
+  <script  src="{% static 'js/jquery-ui-1.13.1.js' %}" ></script>
+ <script>
+ function changestaff(){
+     let words = "";
+     words = document.getElementById('staff_search').value;
+     let array = words.split(" ");
+     let final = array[0].replace(/[()ID]/g,"");
+     document.getElementById('id_staff_id').value = final
+ }
+ </script>
+  <script>
+  $( function() {
+    let availableTags = {{ dropdown | safe }};
+    $( "#id_client_id" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
+  <script>
+  $( function() {
+    let availableTags1 = {{ dropdown2 | safe }};
+    $( "#staff_search" ).autocomplete({
+      source: availableTags1
+    });
+  } );
+  </script>
+
+
+<!,
+      change: function (event, ui) {
+          document.getElementById('id_staff_id').value=13;
+      }>
+
+<div class='conb'><div class='row justify-content-md-center'><br />
+
+
+
+
+				<form class='form-con' method="post">
+                {% csrf_token %}
+
+
+
+
+
+				<h1>Modify a shift</h1>
+                    {% for message in messages %}
+
+    {% if 'error' in message.extra_tags %}
+        <div class='alert alert-danger'>{{ message }}</div>
+    {% elif 'submit' in message.extra_tags %}
+        <div class='alert alert-success'>{{ message }}</div>
+    {% endif %}
+
+{% endfor %}
+                    {% if overtime == 1 %}
+                        <p style="color: orangered">Press the Schedule button to schedule overtime shifts</p>
+                        <button name="submit" class='btn btn-primary' type="submit" value="make1">Schedule</button>
+                    {% endif %}
+                <br>
+
+
+				 <form class='form-con' method="post">
+
+					<label>Search for Clients:</label>
+						{{ form.client_id.errors }}{{ form.client_id }}<br /><br />
+
+					<!--display selection of clients-->
+
+
+					<!--display selection of departments-->
+					Department:
+						<select class='fanc' name='dep_code' id="id_dep_code" required="" type="text" class="form-control">
+							<option hidden {{ startval }}>{{ startval1 }}</option>
+						{% for o in dep %}
+                            <option value ="{{ o.dep_code }}">{{ o.dep_name }}</option><br /><br />
+                        {% endfor %}
+						</select><br /><br />
+
+
+                     Status:
+						<select class='fanc' name='status' id="status" required="" type="text" class="form-control">
+							<option hidden {{ status }}>{{ status }}</option>
+                            <option value ="Scheduled">Scheduled</option><br /><br />
+                            <option value ="Cancelled">Cancelled</option><br /><br />
+						</select><br /><br />
+
+					Shift Date:<div class='form-row'><div class='col-12'>
+						{{ form.shift_date.errors }}{{ form.shift_date }}<br /><br />
+
+					Start Time:<div class='form-row'><div class='col-12'>
+						{{ form.scheduled_start.errors }}{{ form.scheduled_start }}<br /><br />
+
+					</div></div>End Time:<div class='form-row'><div class='col-12'>
+						{{ form.scheduled_end.errors }}{{ form.scheduled_end }}<br /><br />
+
+					<!--button to find available staff-->
+					</div></div><button formnovalidate name="submit" class='btn btn-primary' type="submit" value="getstaff">View Available Staff</button><br /><br />
+
+
+                    {% for message in messages %}
+
+    {% if 'mor' in message.extra_tags %}
+        <div class='alert alert-danger'>{{ message }}</div>
+    {% endif %}
+
+{% endfor %}
+
+					Search for Staff:
+                    <input class='form-control' name='staff_search' id='staff_search' onfocus="this.value=''" type="text">
+                 <button class="form-control" type="button" onclick="changestaff()">Set staff</button><br /><br />
+
+					<!--display selection of staff members-->
+					Staff results:
+						<select class='fanc' name='staff_id' id='id_staff_id' type="text" onchange="document.getElementById('staff_search').value = ''" required="">
+                            <option hidden {{ staffval }}>{{ staffval1 }}</option>
+                            {% for o in dropdown1 %}
+                                {% if staffis == 1 %}
+                                    <option value ="{{ o.staff_id }}">ID({{ o.staff_id }}) {{ o.staff_fname }}, {{ o.staff_lname }}</option><br /><br />
+                                {% else %}
+                                    <option value ="{{ o.0 }}">ID({{ o.0 }}) {{ o.1 }}, {{ o.2 }}</option>
+                                {% endif %}
+                        {% endfor %}
+						</select><br /><br />
+
+						is a supervisor:
+                    {% if super == 1 %}
+					    <input type="checkbox" name="shift_super" value="1" id="id_shift_super" checked=""><br /><br />
+                    {% else %}
+                         <input type="checkbox" name="shift_super" value="0" id="id_shift_super" unchecked=""><br /><br />
+                    {% endif %}
+					Shift Notes:<br />
+						{{ form.shift_notes.errors }}{{ form.shift_notes }}<br /><br />
+
+					<button name="submit" class='btn btn-primary' type="submit" value="make">Submit</button>
+					<a href='/viewshift' class='btn btn-danger'>Cancel</a>
+
+                 </div></form><br />
+
+
+
+		</form>
+            </div>
+</div>
+{% include 'info/includes/footer.html' %}
+{% endblock %}

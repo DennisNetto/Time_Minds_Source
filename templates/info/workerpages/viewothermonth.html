@@ -1,0 +1,54 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+view schedule other
+{% endblock %}
+
+{% block content %}
+{% include 'info/includes/worker_navbar.html' %}
+    <div class="container"><div class="row justify-content-sm-center">
+			<br/>
+			<form class='form-con' method="post">
+            <h5>View shifts:</h5>
+                {% csrf_token %}
+                                {% for message in messages %}
+
+    {% if 'error' in message.extra_tags %}
+        <div class='alert alert-danger'>{{ message }}</div>
+    {% elif 'submit' in message.extra_tags %}
+        <div class='alert alert-success'>{{ message }}</div>
+    {% endif %}
+
+{% endfor %}
+
+
+                       <select class='form-control' id='month'  name='month'>
+                        <option hidden value=''>Pick a month</option>
+						<option value='1'>January</option>
+						<option value='2'>February</option>
+						<option value='3'>March</option>
+                        <option value='4'>April</option>
+                        <option value='5'>May</option>
+                        <option value='6'>June</option>
+                        <option value='7'>July</option>
+                        <option value='8'>Augest</option>
+                        <option value='9'>September</option>
+                        <option value='10'>October</option>
+                        <option value='11'>November</option>
+                        <option value='12'>December</option>
+					</select>
+                        <select class='form-control' id='year'  name='year'>
+                        {% for m in year %}
+						<option value='{{ m }}'>{{ m }}</option>
+                        {% endfor %}
+					</select>
+					<br>
+                    <input  type='submit' name='view' value='View Shifts' class='btn btn-primary' /><br /><br />
+											<!--include option to view all shifts-->
+				<!--back button-->
+				<a href='/viewscedule' class='btn btn-danger'>Back</a>
+					</form><br />
+    </div></div>
+
+
+{% endblock %}

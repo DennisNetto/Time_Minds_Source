@@ -1,0 +1,116 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+View Staff
+{% endblock %}
+
+{% block content %}
+                {% load static %}
+       <link rel="stylesheet" href="{% static 'jquery-ui.css' %}" />
+
+      <script src="{% static 'js/jquery-3.6.0.js' %}" ></script>
+  <script  src="{% static 'js/jquery-ui-1.13.1.js' %}" ></script>
+  <script>
+  $( function() {
+    var availableTags = {{ dropdown | safe }};
+    $( "#id_staff_id" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
+    {% if usertype == 'Bookeeper' %}
+        {% include 'info/includes/book_navbar.html' %}
+    {% else %}
+        {% include 'info/includes/corr_navbar.html' %}
+    {% endif %}
+    <div>
+    <div class="conb" style="width: 95%;">
+	<div class="row justify-content-center">
+    <div class="form-con">
+     <form method="get">
+                      {% if messages %}
+            {% for message in messages %}
+            <div class='alert alert-success'>{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+         <label>Search for staff:</label>
+        <input type="text" name="staff_id" step="any" id="id_staff_id"> <button class='btn btn-primary' type="submit">Submit</button><a href='/viewstaff' class='btn btn-info'>All Staff</a>
+        <br><br>
+        </form>
+			<table class='table-sm' border='1'>
+                <tr>
+					<th>Staff</th>
+					<th>Status</th>
+					<th>Staff Type</th>
+					<th>Username</th>
+					<th>Phone Number</th>
+					<th>Address</th>
+					<th>City</th>
+					<th>Sunday Availability:</th>
+					<th>Monday Availability:</th>
+					<th>Tuesday Availability:</th>
+					<th>Wednesday Availability:</th>
+					<th>Thursday Availability:</th>
+					<th>Friday Availability:</th>
+					<th>Saturday Availability:</th>
+					<th>Notes</th>
+					<th></th>
+				</tr>
+                {% for i in pages %}
+                    <tr>
+                    <td> ID({{ i.staff_id }}) {{ i.staff_fname }}, {{ i.staff_lname }}</td>
+				    <td>{{ i.staff_status }}</td>
+				    <td>{{ i.type_code }}</td>
+				    <td>{{ i.user }}</td>
+				    <td style='min-width: 110px;'>{{ i.staff_phone }}</td>
+				    <td style='min-width: 135px;'>{{ i.staff_address }}</td>
+				    <td>{{ i.staff_city }}</td>
+				    <td>{{ i.sun_avail }}</td>
+				    <td>{{ i.mon_avail }}</td>
+				    <td>{{ i.tue_avail }}</td>
+				    <td>{{ i.wed_avail }}</td>
+				    <td>{{ i.thu_avail }}</td>
+				    <td>{{ i.fri_avail }}</td>
+				    <td>{{ i.sat_avail }}</td>
+				    <td style='width: 110%;'> <div class ='scro'> <textarea class ='scro'>{{ i.staff_notes }}</textarea>
+                    </div></td>
+				    <td><a href='modstaff/{{ i.staff_id }}/' class='btn btn-info'>modify</a></td>
+				    </tr>
+                {% endfor %}
+
+
+			</table><br/>
+     <span class="badge bg-primary">
+			 <h3>Page:{{ pages.number }}
+			 </h3><ul class="pagination">
+                {% if pages.has_previous == True %}
+                    <a href="?page=1" class='page-link'>First</a>
+                <a href="?page={{ pages.previous_page_number }}" class='page-link'>Previous</a>
+                {% endif %}
+
+
+                 {% for i in looper %}
+                    <a href="?page={{ i }}" class='page-link'>{{ i }}</a>
+                 {% endfor %}
+
+            {% if pages.has_next == True %}
+                 <a href="?page={{ pages.next_page_number }}" class='page-link'>Next</a>
+                 <a href="?page={{ pages.paginator.num_pages }}" class='page-link'>Last</a>
+            {% endif %}
+
+
+		   <div class="dropdown">
+			<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">Skip To <span class="caret"></span></button>
+			<ul class="dropdown-menu scrollable-menu" role="menu">
+
+                {% for w in looper %}
+				<li><a class='dropdown-item' href='?page={{ w }}'>Page:{{ w }}</a></li>
+                {% endfor %}
+            </ul>
+		  </div>
+
+
+			 <a href='/land' class='btn btn-info'>Back</a>
+            </ul></span> {% include 'info/includes/footer.html' %}</div></div></div></div></span></div>
+
+{% endblock %}

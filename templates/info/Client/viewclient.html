@@ -1,0 +1,156 @@
+{% extends "info/base.html" %}
+{% block title %}
+View Client
+{% endblock %}
+
+{% block content %}
+            {% load static %}
+       <link rel="stylesheet" href="{% static 'jquery-ui.css' %}" />
+
+      <script src="{% static 'js/jquery-3.6.0.js' %}" ></script>
+  <script  src="{% static 'js/jquery-ui-1.13.1.js' %}" ></script>
+  <script>
+  $( function() {
+    let availableTags = {{ dropdown | safe }};
+    $( "#id_client_lname" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
+    {% if usertype == 'Bookeeper' %}
+        {% include 'info/includes/book_navbar.html' %}
+    {% else %}
+        {% include 'info/includes/corr_navbar.html' %}
+    {% endif %}
+    <div class="conb">
+	<div class="row justify-content-center">
+
+        <div class="form-con">
+        {% if messages %}
+            {% for message in messages %}
+            <div class='alert alert-success'>{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+        <form method="get">
+            <label>Search for a client:</label>
+        <input type="text" name="client_id" id="id_client_lname" class="ui-autocomplete-input" autocomplete="off"> <button class='btn btn-primary' type="submit">Submit</button><a href='/viewclient' class='btn btn-info'>All Clients</a>
+        <br><br>
+        </form>
+        <table border='1'>
+				<tr>
+					<th>
+						<button style='background: none;
+										border: none;
+										padding: 0;
+										color: white;
+										font-weight: bold;
+										text-decoration: none;
+										cursor: pointer;' type='submit' form='clientForm' value='client'>Client
+						</button>
+					</th>
+					<th>
+						<button style='background: none;
+										border: none;
+										padding: 0;
+										color: white;
+										font-weight: bold;
+										text-decoration: none;
+										cursor: pointer;' type='submit' form='statForm' value='status'>Status
+						</button>
+					</th>
+					<th>Phone Number</th>
+					<th>Address</th>
+					<th>
+						<button style='background: none;
+										border: none;
+										padding: 0;
+										color: white;
+										font-weight: bold;
+										text-decoration: none;
+										cursor: pointer;' type='submit' form='cityForm' value='city'>City
+						</button>
+					</th>
+					<th>
+						<button style='background: none;
+										border: none;
+										padding: 0;
+										color: white;
+										font-weight: bold;
+										text-decoration: none;
+										cursor: pointer;' type='submit' form='hourForm' value='hours'>Max Hours per Month
+						</button>
+					</th>
+					<th>
+						<button style='background: none;
+										border: none;
+										padding: 0;
+										color: white;
+										font-weight: bold;
+										text-decoration: none;
+										cursor: pointer;' type='submit' form='distForm' value='dist'>Distance (KM)
+						</button>
+					</th>
+					<th>Notes</th>
+					<th></th>
+				</tr>
+			
+			
+
+			    {% for i in pages %}
+				<tr>
+				<td>CID({{ i.client_id }}) {{ i.client_fname }}, {{ i.client_lname }}</td>
+				<td>{{ i.client_status }}</td>
+				<td>{{ i.client_phone }}</td>
+				<td>{{ i.client_address }}</td>
+				<td>{{ i.client_city }}</td>
+				<td>{{ i.client_max_hours }}</td>
+				<td>{{ i.client_km }}</td>
+				<td style='width: 17%;'><div class ='scro'><textarea class ='scro'>{{ i.client_notes }}</textarea></div></td>
+				<td><a href='modclient/{{ i.client_id }}'class='btn btn-info'>modify</a></td>
+				</tr>
+
+			{% endfor %}
+        </table><br>
+
+
+        <span class="badge bg-primary">
+			 <h3>Page:{{ pages.number }}
+			 </h3><ul class="pagination">
+                {% if pages.has_previous == True %}
+                    <a href="?page=1" class='page-link'>First</a>
+                <a href="?page={{ pages.previous_page_number }}" class='page-link'>Previous</a>
+                {% endif %}
+
+
+                 {% for i in looper %}
+                    <a href="?page={{ i }}" class='page-link'>{{ i }}</a>
+                 {% endfor %}
+
+            {% if pages.has_next == True %}
+                 <a href="?page={{ pages.next_page_number }}" class='page-link'>Next</a>
+                 <a href="?page={{ pages.paginator.num_pages }}" class='page-link'>Last</a>
+            {% endif %}
+
+
+		   <div class="dropdown">
+			<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">Skip To <span class="caret"></span></button>
+			<ul class="dropdown-menu scrollable-menu" role="menu">
+
+                {% for w in looper %}
+				<li><a class='dropdown-item' href='?page={{ w }}'>Page:{{ w }}</a></li>
+                {% endfor %}
+            </ul>
+		  </div>
+
+
+			 <a href='/land' class='btn btn-info'>Back</a>
+            </ul></span></div></div></div></span>
+
+
+
+        </div></div></div><br />
+
+        {% include 'info/includes/footer.html' %}
+
+
+{% endblock %}

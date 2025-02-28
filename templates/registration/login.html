@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>Log in</title>
+
+
+{% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'table.css' %}" />
+	<link rel="stylesheet" href="{% static 'footer.css' %}" />
+    </head>
+
+<body>
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
+					<a class="navbar-brand" href="/login">
+						<img src="{% static 'images/Logo.png' %}" width="120" height="30" class="d-inline-block align-top" alt="">
+						Portal
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+				</nav>
+<br>
+
+<section class='container-fluid'>
+					<section class='row justify-content-center'>
+					<section class='col-12 col-sm-6 col-lg-3'>
+					<div class='bodyDiv'>
+						<div class='form-con'>
+							<br />
+
+                                         <form method="post" class="from-group">
+	    {% csrf_token %}
+          {% if form.errors %}
+              <div class='bodyDiv'><div class="row justify-content-center"> <div class="conb"><b><p>Please enter a correct username and password. Note that both fields may be case-sensitive.</p></b></div></div></div><!-- display the form errors if they exist -->
+{% endif %}
+                                         <b>
+    <p>
+    <label for="id_username">Username</label>
+    <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username" class="form-control">
+
+
+  </p>
+
+
+  <p>
+    <label for="id_password">Password</label>
+    <input type="password" name="password" autocomplete="current-password" required id="id_password" class="form-control">
+      <p id='cap' style='color:red;'>Caps lock is ON.</p>
+</b>
+
+
+
+  </p>
+
+	<button type="submit" class="btn btn-success">Login</button>
+    </form>
+
+                            </div>
+					</div>
+					</section>
+					</section>
+					</section>
+<footer>
+		<div class="footer2">
+			<p>©Time Minds Inc 2022</p>
+		</div>
+</footer>
+		<script>
+		var input = document.getElementById("id_password");
+		var text = document.getElementById("cap");
+		input.addEventListener("keyup", function(event) {
+
+		if (event.getModifierState("CapsLock")) {
+			text.style.display = "block";
+		  } else {
+			text.style.display = "none"
+		  }
+		});
+		</script>
+
+ <body onload="document.getElementById('cap').style.display = 'none'">
+ </body>
+</body>
+</html>

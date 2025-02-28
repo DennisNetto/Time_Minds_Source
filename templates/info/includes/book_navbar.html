@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
+					<a class="navbar-brand" href="/land">
+                        {% load static %}
+						<img src="{% static 'images/Logo.png' %}" width="120" height="30" class="d-inline-block align-top" alt="">
+						Portal
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item active">
+								<a class="nav-link" href="/land">Home <span class="sr-only">(current)</span></a>
+							</li>
+
+							<li class="nav-item dropdown">
+								<a class="nav-link" href="/reports">View Reports</a>
+
+							</li>
+
+
+
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Staff/Client Management
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="/addstaff">Add New Staff Member</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/viewstaff">Manage Staff</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/addclient">Add Client</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/viewclient">Manage Clients</a>
+								</div>
+
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Shift Management
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="/scheduleshift">Schedule Shift</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/viewshift">Manage Shifts</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/viewrecshift">Manage Recurring Shifts</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/approvetime">Approve Hours</a>
+                                    <div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/altershift">Submit Shifts</a>
+								</div>
+
+
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Department/GH Management
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="/addgh">Add Group Home</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/viewgh">Manage Group Homes</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/adddep">Add Department</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/viewdep">Manage Departments</a>
+
+								</div>
+
+							</li>
+														<li class="nav-item dropdown">
+								<a class="nav-link" href="/help">Help</a>
+
+							</li>
+                            <li class="nav-item dropdown">
+								<a class="nav-link" href="/about">About</a>
+
+							</li>
+
+						</ul>
+
+
+                            <a class="btn btn-danger" href="/logout" role="button">Logout</a>
+
+					</div>
+
+				</nav>
+    <br />

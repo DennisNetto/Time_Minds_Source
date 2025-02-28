@@ -1,0 +1,87 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+View Dep
+{% endblock %}
+
+{% block content %}
+    {% if usertype == 'Bookeeper' %}
+        {% include 'info/includes/book_navbar.html' %}
+    {% else %}
+        {% include 'info/includes/corr_navbar.html' %}
+    {% endif %}
+    <div class="conb">
+<div class="row justify-content-center">
+<form class="form-con">
+        {% if messages %}
+            {% for message in messages %}
+            <div class='alert alert-success'>{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+    			<table border='1'>
+				<tr>
+					<th>Department Code</th>
+					<th>Department Status</th>
+					<th>Department</th>
+					<th>Department Description</th>
+					<th></th>
+				</tr>
+			
+
+			
+			    {% for i in pages %}
+				<tr>
+				<td>{{ i.dep_code }}</td>
+				<td>{{ i.dep_status }}</td>
+				<td>{{ i.dep_name }}</td>
+				<td>{{ i.dep_desc }}</td>
+				<td><a href='moddep/{{ i.dep_code }}/'class='btn btn-info'>modify</a></td>
+				</tr>
+			
+            {% endfor %}
+			</table><br/>
+
+			<span class="badge bg-primary">
+			 <h3>Page:{{ pages.number }}
+			 </h3><ul class="pagination">
+                {% if pages.has_previous == True %}
+                    <a href="?page=1" class='page-link'>First</a>
+                <a href="?page={{ pages.previous_page_number }}" class='page-link'>Previous</a>
+                {% endif %}
+
+
+                 {% for i in looper %}
+                    <a href="?page={{ i }}" class='page-link'>{{ i }}</a>
+                 {% endfor %}
+
+            {% if pages.has_next == True %}
+                 <a href="?page={{ pages.next_page_number }}" class='page-link'>Next</a>
+                 <a href="?page={{ pages.paginator.num_pages }}" class='page-link'>Last</a>
+            {% endif %}
+
+
+		   <div class="dropdown">
+			<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">Skip To <span class="caret"></span></button>
+			<ul class="dropdown-menu scrollable-menu" role="menu">
+
+                {% for w in looper %}
+				<li><a class='dropdown-item' href='?page={{ w }}'>Page:{{ w }}</a></li>
+                {% endfor %}
+            </ul>
+		  </div>
+
+
+			 <a href='/land' class='btn btn-info'>Back</a>
+            </ul></span></form></div></div></ul></div></span>
+
+
+
+			</form>
+		</form>
+	</div>
+</div>
+
+
+</form></div></div></form>
+           {% include 'info/includes/footer.html' %}
+{% endblock %}

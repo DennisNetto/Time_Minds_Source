@@ -1,0 +1,52 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+Add Department
+{% endblock %}
+
+{% block content %}
+        {% if usertype == 'Bookeeper' %}
+        {% include 'info/includes/book_navbar.html' %}
+    {% else %}
+        {% include 'info/includes/corr_navbar.html' %}
+    {% endif %}
+    <div class="conb">
+			<div class="row justify-content-sm-center">
+               <form class='form-con' method="post">
+            {% csrf_token %}
+
+
+
+                                        {% for message in messages %}
+
+    {% if 'error' in message.extra_tags %}
+        <div class='alert alert-danger'>{{ message }}</div>
+    {% elif 'submit' in message.extra_tags %}
+        <div class='alert alert-success'>{{ message }}</div>
+    {% endif %}
+
+{% endfor %}
+				<h1>Add New Department</h1>
+						
+					Department Code:<div class='form-row'><div class='col-12'>
+						 {{ form.dep_code.errors }}{{ form.dep_code }}
+						<p class='text-danger'>Department codes must be 3 characters or less</p>	
+						
+					</div></div>Department Name:<div class='form-row'><div class='col-12'>
+						 {{ form.dep_name.errors }}{{ form.dep_name }}<br /><br />
+
+					</div></div>Department Description:<br />
+						 {{ form.dep_desc.errors }}{{ form.dep_desc }}<br /><br />
+
+					<button class='btn btn-primary' type="submit">Submit</button>
+					<a href='/land' class='btn btn-danger'>Cancel</a>
+				</form>
+
+            
+
+
+	</div>
+</div>';
+
+    {% include 'info/includes/footer.html' %}
+{% endblock %}

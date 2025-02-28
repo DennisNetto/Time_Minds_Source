@@ -1,0 +1,42 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+Alter Shifts
+{% endblock %}
+
+{% block content %}
+    {% if usertype == 'Bookeeper' %}
+        {% include 'info/includes/book_navbar.html' %}
+    {% else %}
+        {% include 'info/includes/corr_navbar.html' %}
+    {% endif %}
+
+
+
+    <br />
+
+
+				<form class='conb' method="post">
+                <input type="hidden" name="csrfmiddlewaretoken" value="6phefxGXdMfvTFC1u5kWmkcinKS3elFWE3MgzNKFhuKEicV8uQe4eujO9HkQuTn6">
+
+
+			<div class="row justify-content-sm-center"><div class="form-con"><h5>Scheduled/Claimed Time:</h5>
+
+                    <table border='1'>
+                        {% for i in shift %}
+                        <tr><th>Worker</th><th>Client</th><th>Shift Date</th><th>Scheduled Hours</th><th>Claimed start</th><th>Claimed End</th><th>Save</th></tr><tr><td>ID({{ i.shift_id }}) {{ i.staff.staff_fname }}, {{ i.staff.staff_lname }}</td><td>CID({{ i.client_id }}) {{ i.client.client_fname }}, {{ i.client.client_lname }}</td><td>{{ i.shift_date }}</td><td>{{ i.scheduled_start }}-{{ i.scheduled_end }}</td><td><input style='width: 100%' class="form-fan" type="time" name="{{ i.shift_id }}-st" value=""></td><td><input  style='width: 100%' class="form-fan" type="time" name="{{ i.shift_id }}-en" value=""></td><td><button name="submit" class='btn btn-primary' type="submit">Save</button></td></tr>
+                        {% endfor %}
+                        <a class='btn btn-danger' href='/land'>Cancel</a>
+
+
+
+                    </table></div>
+</div>
+            </div>
+
+
+
+</form>
+{% include 'info/includes/footer.html' %}
+
+{% endblock %}

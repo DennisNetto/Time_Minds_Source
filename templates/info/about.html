@@ -1,0 +1,52 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+About
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>about</title>
+
+	<!--link css files-->
+	<style>
+body {
+    {% load static %}
+	background-image: url({% static 'images/aboutpic.jpg' %});
+	background-size: cover;
+	background-attachment: fixed;
+
+	}
+</style>
+    <link rel="stylesheet" href="{% static 'about.css' %}" />
+
+</head>
+<body>
+
+<section class="container-fluid">
+    <section class="row justify-content-center">
+        <section class="col-14 col-sm-8 col-md-5">
+            <form class="form-con">
+                <form>
+
+                    <div>
+
+                        <div>
+							<!--display basic information about the project-->
+                            <h3>This webapp was ported from PHP to add better security, functionality, and to cut development time.</h3>
+
+                            <h5>Programmed by: Evan Guest.</h5>
+                            <br>
+                            <h5>©2022 Time Minds Inc</h5>
+                        </div>
+
+                    </div>
+                </form>
+            </form>
+        </section>
+    </section>
+</section>
+{% endblock %}

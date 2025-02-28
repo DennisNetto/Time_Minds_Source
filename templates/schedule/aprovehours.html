@@ -1,0 +1,35 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+approve hours
+{% endblock %}
+
+{% block content %}
+
+            {% if usertype == 'Bookeeper' %}
+        {% include 'info/includes/book_navbar.html' %}
+    {% else %}
+        {% include 'info/includes/corr_navbar.html' %}
+    {% endif %}
+
+			<div class="conb">				<div class="row justify-content-sm-center">
+									<div class="form-con">						<br /><table border='1'>
+ {% if empty == 0 %}
+    {{ sheet |safe }}
+ {% else %}
+    <p>No shifts to approve</p>
+ {% endif %}
+                                        <br> <a href='/land' class='btn btn-secondary'>Back</a><br /><br />
+
+		<div class="footer2">
+{% include 'info/includes/footer.html' %}
+		</div>
+                                    </table></div>
+			</div>
+			</div>
+</body>
+</html>
+
+
+
+{% endblock %}

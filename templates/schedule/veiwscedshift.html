@@ -1,0 +1,71 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+Scedualed Shifts
+{% endblock %}
+
+{% block content %}
+        {% if usertype == 'Bookeeper' %}
+        {% include 'info/includes/book_navbar.html' %}
+    {% else %}
+        {% include 'info/includes/corr_navbar.html' %}
+    {% endif %}
+   <div class="conb">
+	<div class="row justify-content-center">
+
+        <div class="form-con">
+        {% if messages %}
+            {% for message in messages %}
+            <div class='alert alert-success'>{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+        <table border='1'>
+        </tr><tr><th colspan='10'><h2>{{ month }} {{ year }}</h2></th></tr>
+				<tr>
+					<th>Client</th>
+					<th>Department</th>
+                    <th>Shift Status</th>
+					<th>Shift Date</th>
+                    <th>Start Time</th>
+					<th>End Time</th>
+                    <th>Staff Member</th>
+					<th>Supervisor</th>
+                    <th>Notes</th>
+                    <th></th>
+				</tr>
+
+
+
+			    {% for i in list %}
+				<tr>
+				<td>CID({{ i.client_id }}) {{ i.client.client_fname}}, {{ i.client.client_lname }}</td>
+                <td>{{ i.dep_code.dep_name }}</td>
+                <td>{{ i.status_code }}</td>
+				<td>{{ i.shift_date }}</td>
+				<td>{{ i.scheduled_start }}</td>
+				<td>{{ i.scheduled_end}}</td>
+				<td>ID({{ i.staff_id }}) {{ i.staff.staff_fname }}, {{ i.staff.staff_lname }}</td>
+                    {% if i.shift_super == 1 %}
+                        <td>yes</td>
+                    {% else %}
+                        <td>no</td>
+				    {% endif %}
+				<td style='width: 17%;'><div class ='scro'><textarea class ='scro'>{{ i.shift_notes }}</textarea></div></td>
+				<td><a href='modshift/{{ i.shift_id }}'class='btn btn-info'>modify</a></td>
+				</tr>
+
+			{% endfor %}
+        </table><br>
+
+
+
+
+			 <a href='viewshift' class='btn btn-info'>Back</a>
+           </div></div></div></span>
+
+
+
+        </div></div></div><br />
+
+
+{% endblock %}

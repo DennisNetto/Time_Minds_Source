@@ -1,0 +1,34 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+Help
+{% endblock %}
+
+{% block content %}
+{% include 'info/includes/worker_navbar.html' %}
+    {% load static %}
+
+    						<div>
+						<h3>Change Password</h3>
+						<div class="embed-responsive">
+						</div>
+						<video width="320" height="240" controls> <source src="{% static 'images/instruktvideo/changepwworker.mp4' %}" type="video/mp4"> </video>
+						<br></br>
+                            </div>
+    <div>
+<h3>Submit Hours</h3>
+<div class="embed-responsive">
+</div>
+<video width="320" height="240" controls> <source src="{% static 'images/instruktvideo/submithours.mp4' %}" type="video/mp4"> </video>
+<br></br>
+    </div>
+
+    <div>
+<h3>View Personal Shifts</h3>
+<div class="embed-responsive">
+</div>
+<video width="320" height="240" controls> <source src="{% static 'images/instruktvideo/viewshiftworker.mp4' %}" type="video/mp4"> </video>
+<br></br>
+    </div>
+
+{% endblock %}

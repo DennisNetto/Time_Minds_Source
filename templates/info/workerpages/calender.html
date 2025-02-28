@@ -1,0 +1,72 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+Schedule
+{% endblock %}
+
+{% block content %}
+
+{% include 'info/includes/worker_navbar.html' %}
+
+    		<style>
+			.calendar, td, tr
+			{
+				border: 1px solid black;
+
+			}
+
+			th
+			{
+				text-align: center;
+			}
+
+			td
+			{
+				vertical-align: top;
+				text-align: left;
+				word-break: break-word;
+			}
+
+			table
+			{
+				table-layout: fixed;
+			}
+
+			.calendar
+			{
+				width: 100%;
+				height: 100%;
+			}
+
+			a
+			{
+				display: block;
+			}
+
+			html, body
+			{
+				height: 100%;
+				width: 100%;
+			}
+
+			.bodyDiv
+			{
+				height: 100%;
+				width: 100%;
+				text-align: center;
+			}
+
+			.childBodyDiv
+			{
+				height: 90%;
+				width: 85%;
+				display: inline-block;
+			}
+		</style>
+    <div class='bodyDiv'>
+	<div class='childBodyDiv'>
+    {{ calender |safe }}
+        {{ other |safe }}
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+If you are starting this system from scratch follow this list.!!!!!!!!!!!!!!!!!!!
+
+Add User Groups-
+Bookeeper
+Coordinator
+Worker
+
+shifts can be -
+Scheduled,
+Cancelled,
+Approved,
+Claimed.
+
+ask about overtime.

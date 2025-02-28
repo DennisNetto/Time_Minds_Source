@@ -1,0 +1,35 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+approve
+{% endblock %}
+
+{% block content %}
+                {% if usertype == 'Bookeeper' %}
+        {% include 'info/includes/book_navbar.html' %}
+    {% else %}
+        {% include 'info/includes/corr_navbar.html' %}
+    {% endif %}
+
+				<form class='conb' method="post">
+                {% csrf_token %}
+
+
+			<div class="row justify-content-sm-center"><div class="form-con"><h1>Staff: ID({{ id }}) {{ name }} &nbsp &nbsp &nbsp &nbsp</h1><h5>Scheduled/Claimed Time:</h5>
+                {% if empty == 0 %}
+                    {{ sheet |safe }}
+                {% else %}
+                    <p>No more shifts to approve for this worker.</p>
+                    <a class='btn btn-danger' href='/approvehours'>Cancel</a>
+                {% endif %}
+
+
+    </div>
+</div>
+            </div>
+
+
+
+</form>
+
+{% endblock %}

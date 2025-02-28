@@ -1,0 +1,196 @@
+
+.scro {
+	width: 100%;
+	height: 90px;
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+	border: 0px;
+}
+
+
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+ }
+
+
+th, td {
+    padding: 15px;
+    text-align: left;}
+
+ th {
+    background-color: #686868;
+    color: white;}
+
+.badge-purp {
+    color: #212529;
+    background-color:  	 	 	#BA55D3;
+}
+
+a.badge-purp:hover, a.badge-purp:focus {
+    color: #212529;
+    background-color: #d39e00;
+}
+
+a.badge-purp:focus, a.badge-purp.focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);}
+
+.badge-prup {
+    color: #212529;
+    background-color:  	 	 	#BA55D3;
+}
+
+.badge-light {
+
+    border-style: solid;
+    border-width: 1px;
+}
+
+
+.form-con {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000;
+	
+    box-sizing: content-box;
+	
+	z-index: 2;
+
+
+}
+
+
+.form-cog {
+    background: #fff;
+    padding: 30px;
+    border-radius: 0px;
+    box-shadow: 0px 0px px 0px #000;
+
+    box-sizing: content-box;
+	left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+	position: fixed;
+	
+
+
+}
+
+.form-fan{
+	
+ 
+  width: 30%;
+  
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+ 
+ 
+
+  
+  
+	
+}
+
+.fanc {
+
+
+ height: calc(1.5em + 0.5rem + 2px);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+.bodyDiv
+{
+height: 50%;
+width: 100%;
+text-align: center;
+			}
+			
+.childBodyDiv
+{
+height: 300px;
+width: 400px;
+display: inline-block;
+border: solid black 1px;
+}
+
+.form-log {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000;
+	width: 100%;
+    box-sizing: content-box;
+	
+	z-index: 2;
+
+
+}
+
+.form-cof {
+width:100%;
+
+height:72%;
+
+padding-right:15px;
+
+padding-left:15px;
+
+margin-right:auto;
+
+margin-left:auto;
+}
+
+
+.zon
+{
+z-index: 2;
+}
+
+.conb{
+  width: 100%;
+  min-height: 85%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.cardb {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.card-bodyb {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+}
+  .card-deckb {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+ 

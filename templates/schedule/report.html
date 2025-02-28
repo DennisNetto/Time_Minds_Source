@@ -1,0 +1,96 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+Report
+{% endblock %}
+
+{% block content %}
+    <style>body {
+scroll: no; overflow: hidden;
+}</style>
+                {% load static %}
+       <link rel="stylesheet" href="{% static 'jquery-ui.css' %}" />
+
+      <script src="{% static 'js/jquery-3.6.0.js' %}" ></script>
+  <script  src="{% static 'js/jquery-ui-1.13.1.js' %}" ></script>
+  <script>
+  $( function() {
+    var availableTags = {{ dropdown | safe }};
+    $( "#staffname" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
+        {% if usertype == 'Bookeeper' %}
+        {% include 'info/includes/book_navbar.html' %}
+    {% else %}
+        {% include 'info/includes/corr_navbar.html' %}
+    {% endif %}
+
+
+			<div class="conb"><div class="row justify-content-sm-center"><div class='container'>
+		<div style="width: 100%" class='form-con'>
+			 <form method="post">
+                 {% csrf_token %}
+                     {% if messages %}
+            {% for message in messages %}
+            <div class='alert alert-danger'>{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+				<h2>Create Report</h2><br />
+				View hours from:<div class='form-row'><div class='col-12'> 					</select><br />
+                        <select class='form-control' id='month'  name='month'>
+
+                           {% if monthback %}
+                               {{ monthback |safe }}
+                           {% endif %}
+                        <option hidden value=''>Pick a month</option>
+						<option value='1'>January</option>
+						<option value='2'>February</option>
+						<option value='3'>March</option>
+                        <option value='4'>April</option>
+                        <option value='5'>May</option>
+                        <option value='6'>June</option>
+                        <option value='7'>July</option>
+                        <option value='8'>Augest</option>
+                        <option value='9'>September</option>
+                        <option value='10'>October</option>
+                        <option value='11'>November</option>
+                        <option value='12'>December</option>
+					</select> <br />
+                                         <select class='form-control' id='year'  name='year'>
+                                          {% if yearback %}
+                                            {{ yearback |safe }}
+                                         {% endif %}
+                        {% for m in year %}
+						<option value='{{ m }}'>{{ m }}</option>
+                        {% endfor %}
+					</select><br>
+                                                 <select class='form-control' id='switch'  name='switch'>
+                                                     {% if switchback %}
+                                                        {{ switchback |safe }}
+                                                     {% endif %}
+                        <option hidden value=''>Pick a time span</option>
+						<option value='half1'>1-15</option>
+						<option value='half2'>16-end</option>
+						<option value='full'>full</option>
+					</select> <br />
+				</div></div>Search for Staff:<div class='form-row'><div class='col-12'>
+						<input class='form-fan' type='text' name='staffname' id="staffname" value='' onkeyup='staSearch(this.value)'><br /><br />
+
+
+				</div></div><input type='submit' name='gen' class='btn btn-primary' value='View Report'>
+			</form><br /><br />
+
+<div class='container' style='min-height: 45%;' >
+    <p>{{ start }}/{{ end }}</p>
+
+    {{ sheet |safe }}
+<a href='/land' class='btn btn-secondary'>Back to Home</a></div>
+</div></div>
+</div>
+</div>
+    <br>
+    {% include 'info/includes/footer.html' %}
+
+{% endblock %}

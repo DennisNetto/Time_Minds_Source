@@ -1,0 +1,149 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+Mod Staff
+{% endblock %}
+
+{% block content %}
+    {% if usertype == 'Bookeeper' %}
+        {% include 'info/includes/book_navbar.html' %}
+    {% else %}
+        {% include 'info/includes/corr_navbar.html' %}
+    {% endif %}
+                            <script>
+function myFunction(the) {
+  var x = document.getElementById("myDIV");
+  if (the == 1) {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+    <style>
+
+    body{
+        font-weight: 399;
+    }
+
+    </style>
+
+    <div class="conb">
+			<div class="row justify-content-sm-center">
+
+
+
+				<form class='form-con' method="post">
+                    {% csrf_token %}
+				<h1>Modify a Staff Member</h1>
+                                        {% for message in messages %}
+
+    {% if 'error' in message.extra_tags %}
+        <div class='alert alert-danger'>{{ message }}</div>
+    {% elif 'submit' in message.extra_tags %}
+        <div class='alert alert-success'>{{ message }}</div>
+    {% endif %}
+
+{% endfor %}
+
+					<input class='form-fan' type='hidden' name='id' value='id'>
+					First Name:
+						{{ form1.Firstname.errors }}{{ form1.Firstname }}
+					Last Name:
+						{{ form1.Lastname.errors }}{{ form1.Lastname }}<br /><br />
+
+					Full Address:
+						{{ form1.Fulladdress.errors }}{{ form1.Fulladdress }}
+					City:
+						{{ form1.City.errors }}{{ form1.City }}<br /><br />
+
+					Primary Phone Number:
+						<input {{ phone }}><br />
+						<p class='text-danger'>Format: 000-000-0000</p>
+
+					<!--display selection of statuses-->
+					Status:
+					<select name="status" id="typer">
+                                <option value='{{ stat }}' hidden>{{ stat }}</option>
+                                <option value="Active">Active</option>
+                                <option value="On Hold">On Hold</option>
+                                <option value="Inactive">Inactive</option>
+
+                                </select>
+
+			            <br /><br />
+
+					<!--display selection of user types-->
+						User Type:  <select name="type" id="cars">
+                                <option value='{{ tyype }}' hidden>{{ tyype }}</option>
+                                <option value="Worker" onclick="myFunction(1)" >Worker</option>
+                                <option value="Coordinator" onclick="myFunction(0)">Coordinator</option>
+                                <option value="Bookeeper" onclick="myFunction(0)">Bookeeper</option>
+                                </select>
+
+			            <br /><br />
+
+					User Name:<div class='form-row'><div class='col-12'>
+						<input class='form-fan' type='text' name='uname' value='{{ unamev }}'><br /><br />
+					</div></div>Change Password:<br />
+                    <a href='/passuser/{{ idf }}/' class='btn btn-info'>Change Password</a><br>
+
+                    <div id="myDIV">
+                            Availability: <br /><br />
+							Sunday:
+								Start:
+									<input class='form-fan' type='time' name='sunSt' value='{{ sunSt }}'>
+								End:
+									<input class='form-fan' type='time' name='sunEnd' value='{{ sunEnd }}'><br /><br />
+							Monday:
+								Start:
+									<input class='form-fan' type='time' name='monSt' value='{{ monSt }}'>
+								End:
+									<input class='form-fan' type='time' name='monEnd' value='{{ monEnd }}'><br /><br />
+
+							Tuesday:
+								Start:
+									<input class='form-fan' type='time' name='tueSt' value='{{ tueSt }}'>
+								End:
+									<input class='form-fan' type='time' name='tueEnd' value='{{ tueEnd }}'><br /><br />
+
+							 Wednesday:
+								Start:
+									<input class='form-fan' type='time' name='wedSt' value='{{ wedSt }}'>
+								End:
+									<input class='form-fan' type='time' name='wedEnd' value='{{ wedEnd }}'><br /><br />
+
+							 Thursday:
+								Start:
+									<input class='form-fan' type='time' name='thuSt' value='{{ thuSt }}'>
+								End:
+									<input class='form-fan' type='time' name='thuEnd' value='{{ thuEnd }}'><br /><br />
+
+							 Friday:
+								Start:
+									<input class='form-fan' type='time' name='friSt' value='{{ friSt }}'>
+								End:
+									<input class='form-fan' type='time' name='friEnd' value='{{ friEnd }}'><br /><br />
+
+							 Saturday:
+								Start:
+									<input class='form-fan' type='time' name='satSt' value='{{ satSt }}'>
+								End:
+									<input class='form-fan' type='time' name='satEnd' value='{{ satEnd }}'><br /><br />
+
+
+
+                        </div>
+
+					Notes:<br />
+						{{ form1.Notes.errors }}{{ form1.Notes }}<br /><br />
+
+					<button class='btn btn-primary' type="submit">Submit</button>					<a href='/viewstaff' class='btn btn-danger'>Cancel</a>
+				</form>
+                <script>onload=myFunction({{ graph }})</script>
+				<!--cancel button that returns user to previous page-->
+
+            </div></div>
+
+    {% include 'info/includes/footer.html' %}
+{% endblock %}

@@ -1,0 +1,64 @@
+	.calendar, td, tr
+			{
+				border: 1px solid black;
+				
+				
+			}
+			
+			th
+			{
+				text-align: center;
+			}
+			
+			td
+			{
+				vertical-align: top;
+				text-align: left;
+				
+			}
+			
+			table
+			{
+				table-layout: fixed;
+			}
+			
+			.calendar
+			{
+				width: 100%;
+				height: 100%;
+			}
+
+			.header
+			{
+				
+			}
+
+			.day
+			{
+				
+			}
+			
+			a
+			{
+				display: block;
+			}
+			
+			html, body
+			{
+				height: 100%;
+				width: 100%; 
+			}
+			
+			.bodyDiv
+			{
+				height: 100%;
+				width: 100%;
+				text-align: center;
+			}
+			
+			.childBodyDiv
+			{
+				height: 85%;
+				width: 60%;
+				display: inline-block;
+			}

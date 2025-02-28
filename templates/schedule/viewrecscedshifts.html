@@ -1,0 +1,74 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+Scedualed Shifts
+{% endblock %}
+
+{% block content %}
+        {% if usertype == 'Bookeeper' %}
+        {% include 'info/includes/book_navbar.html' %}
+    {% else %}
+        {% include 'info/includes/corr_navbar.html' %}
+    {% endif %}
+   <div class="conb">
+	<div class="row justify-content-center">
+
+        <div class="form-con">
+        {% if messages %}
+            {% for message in messages %}
+            <div class='alert alert-success'>{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+        <table border='1'>
+        {% if for == 's' %}
+            </tr><tr><th colspan='8'><h2>Staff</h2></th></tr>
+        {% elif for == 'c' %}
+            </tr><tr><th colspan='8'><h2>Client</h2></th></tr>
+        {% elif for == 'd' %}
+            </tr><tr><th colspan='8'><h2>Department</h2></th></tr>
+        {% endif %}
+
+				<tr>
+					<th>Client</th>
+					<th>Staff</th>
+                    <th>Department</th>
+					<th>Day</th>
+                    <th>Time</th>
+					<th>Staff is a supervisor</th>
+                    <th>Notes</th>
+                    <th></th>
+				</tr>
+
+
+
+			    {% for i in list %}
+				<tr>
+				<td>CID({{ i.client_id }}) {{ i.client.client_fname}}, {{ i.client.client_lname }}</td>
+                <td>ID({{ i.staff_id }}) {{ i.staff.staff_fname }}, {{ i.staff.staff_lname }}</td>
+                <td>{{ i.dep_code.dep_name }}</td>
+                <td>{{ i.rec_day }}</td>
+				<td>{{ i.rec_start }} - {{ i.rec_end}}</td>
+                    {% if i.shift_super == 1 %}
+                        <td>yes</td>
+                    {% else %}
+                        <td>no</td>
+				    {% endif %}
+				<td style='width: 17%;'><div class ='scro'><textarea class ='scro'>{{ i.shift_notes }}</textarea></div></td>
+				<td><a href='modrecshift/{{ i.rec_id }}'class='btn btn-info'>modify</a></td>
+				</tr>
+
+			{% endfor %}
+        </table><br>
+
+
+
+
+			 <a href='viewrecshift' class='btn btn-info'>Back</a>
+           </div></div></div></span>
+
+
+
+        </div></div></div><br />
+
+
+{% endblock %}

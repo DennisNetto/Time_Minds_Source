@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+      .bodD
+      {
+          min-height: 85%;
+      }
+      html, body
+      {
+          height: 100%;
+      }
+      .calendar, td, tr
+      {
+          border: 1px solid black;
+
+      }
+    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'table.css' %}" />
+	<link rel="stylesheet" href="{% static 'footer.css' %}" />
+    <link rel="icon" href="{% static 'images/icon.png' %}">
+    <script src="{% static 'js/googleapis.js' %}"></script>
+    <script src="{% static 'js/jquery-ui-1.13.1.js' %}"></script>
+    <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}" crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
+    <title>{% block title %}Tim's Site{% endblock %}</title>
+</head>
+
+<body>
+
+{% if user.is_authenticated %}
+    {% block content %}
+    {% endblock %}
+{% else %}
+    <p>Login to access content <a href="/login">Here</a></p>
+{% endif %}
+
+
+
+
+</body>
+</html>

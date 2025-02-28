@@ -1,0 +1,59 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+{% include 'info/includes/worker_navbar.html' %}
+     <div class="conb">
+
+						  <div class="row row-cols-1 row-cols-md-3">
+
+  <div class="col mb-4">
+<div class="card text-white bg-dark ">
+
+      <div class="card-body">
+        <h5 class="card-title">Schedule / Timesheet Submission</h5>
+        <p class="card-text"></p>
+      </div>
+	  <div class="card-deck">
+	  	  <div class="card text-center" style="width: 18rem;">
+<div class="card-body bg-light text-dark">
+    <h5 class="card-title"></h5>
+    <p class="card-text">View Schedule</p>
+    <a href="/viewscedule" class="btn btn-primary">Check Schedule</a>
+  </div>
+</div>
+<div class="card text-center" style="width: 18rem;">
+<div class="card-body bg-light text-dark">
+    <h5 class="card-title"></h5>
+    <p class="card-text">Submit Your Timesheet</p>
+   <a href="/timesheet" class="btn btn-primary">Submit Timesheet</a>
+  </div>
+</div>
+    </div>
+  </div>
+  </div>
+<div class="col mb-4">
+<div class="card text-white bg-dark ">
+
+      <div class="card-body">
+        <h5 class="card-title">Manage Account</h5>
+
+      </div>
+	  	  <div class="card-deck">
+	  	  <div class="card text-center" style="width: 18rem;">
+<div class="card-body bg-light text-dark">
+    <h5 class="card-title"></h5>
+    <p class="card-text">Change Your Account Password</p>
+   <a href="/changepass" class="btn btn-primary">Change Password</a>
+  </div>
+</div>
+    </div>
+  </div>
+  </div>
+    </div>
+  </div>
+  {% include 'info/includes/footer.html' %}
+{% endblock %}

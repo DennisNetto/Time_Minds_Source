@@ -1,0 +1,50 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+Time card
+{% endblock %}
+
+{% block content %}
+{% include 'info/includes/worker_navbar.html' %}
+    <script>
+function verify() {
+    let words = document.getElementById('ver').value
+    if (document.getElementById("ver").checked) {
+        document.getElementById("sub").disabled = false;
+    } else {
+        document.getElementById("sub").disabled = true;
+    }
+}
+</script>
+
+
+
+
+
+
+
+		 <div class="conb">
+
+		<div class="row justify-content-center">
+<form class='form-con' method="post"><h1>Staff: {{ name }} &nbsp &nbsp &nbsp &nbsp Month/Year: {{ month }}/{{ year }}</h1><table class='table-sm' border='1'><br>
+    {% csrf_token %}
+                {% if empty == 0 %}
+                    {{ time |safe }}
+                    			By checking this box, I certify that this timesheet is complete and accurately reflects my time and effort:
+			<!--this checkbox has to be checked before timesheet can be submitted-->
+			<input id='ver' type='checkbox' name='ver' onclick='verify()'><br /><br />
+			<input id='sub' type='submit' class='btn btn-secondary' name='submit' value='Submit Timesheet' disabled='true'>
+                {% else %}
+                    <p>No Shifts to be submitted</p>
+                {% endif %}
+			<a href='/land' class='btn btn-danger'>Cancel</a>
+</table></form></div></div></form><br />
+
+
+    </form>
+</form>
+</div>
+         </div>
+
+
+{% endblock %}

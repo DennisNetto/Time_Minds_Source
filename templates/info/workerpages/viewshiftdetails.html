@@ -1,0 +1,65 @@
+{% extends "info/base.html" %}
+
+{% block title %}
+Add Staff
+{% endblock %}
+
+{% block content %}
+{% include 'info/includes/worker_navbar.html' %}
+
+
+
+			<style>
+				.bodD
+				{
+					min-height: 85%;
+				}
+				html, body
+				{
+					height: 100%;
+				}
+
+			</style>
+
+
+
+
+				<div class='conb'>
+				<div class='row justify-content-md-center'><br />
+					<form class='form-con'>
+
+					<h1>View a Shift</h1>
+
+
+
+						Client: {{ client }}<br /><br />
+
+
+						Department: {{ department }}<br /><br />
+
+
+						Shift Status: {{ status }}<br /><br />
+
+
+						Shift Date: {{ day }}<br /><br />
+
+
+						<p>Hours: {{ time }}</p>
+                {% if supervisor == 0 %}
+				    <p>Supervisor: No</p>
+                {% else %}
+                        <p>Supervisor: Yes</p>
+                {% endif %}
+
+						Notes: {{ notes }}<br /><br />
+
+
+					<a href='/viewscedule' class='btn btn-secondary'>Back</a>
+	</form>
+				</div>
+			</div>
+
+
+
+
+{% endblock %}

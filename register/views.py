@@ -26,13 +26,6 @@ def register(request):
         form1 = ProfileForm(request.POST)
         staff_fname = 'error'
         staff_lname = 'error'
-        sunf = ''
-        monf = ''
-        tuef = ''
-        wedf = ''
-        thuf = ''
-        frif = ''
-        satf = ''
         sunst = ''
         sunend = ''
         monst = ''

@@ -3,6 +3,7 @@ from info.models import *
 from users.models import Profile
 from datetime import datetime, timedelta, date
 
+# Not touching any of this code unless its shown to have errors, its probably overly complicated, but "it just works".
 
 def monthword(num):
     num = int(num)
